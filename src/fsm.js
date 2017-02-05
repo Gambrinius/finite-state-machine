@@ -21,7 +21,12 @@ class FSM {
      * @param state
      */
     changeState(state) {
+        if (this.currentConfig.states[state] == undefined)
+        {
+            throw new Error();
+        }
         
+        this.currentState = state;
     }
 
     /**
@@ -29,7 +34,14 @@ class FSM {
      * @param event
      */
     trigger(event) {
-        
+        let newState = this.currentConfig.states[this.currentState].transitions[event];
+
+        if (newState == undefined)
+        {
+            throw new Error();
+        }
+
+        this.changeState(newState);
     }
 
     /**
