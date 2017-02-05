@@ -14,20 +14,3 @@
     }
   }
 }
-
-describe('#getStates', () => {
-
-it('returns correct states for event', () => {
-const student = new FSM(config);
-
-expect(student.getStates('get_hungry')).to.deep.equal(['busy', 'sleeping']);
-expect(student.getStates('study')).to.deep.equal(['normal']);
-});
-
-it('returns empty array for not valid array', () => {
-const student = new FSM(config);
-
-expect(student.getStates('hmmm... empty array?')).to.deep.equal([]);
-});
-
-});
