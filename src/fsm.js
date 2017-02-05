@@ -25,7 +25,7 @@ class FSM {
         {
             throw new Error();
         }
-        
+
         this.currentState = state;
     }
 
@@ -58,7 +58,21 @@ class FSM {
      * @returns {Array}
      */
     getStates(event) {
-        
+        let arrayOfStates = Object.keys(this.currentConfig.states);
+        if(event == undefined){
+            return arrayOfStates;
+        } else {
+            let newArrayOfStates = [];
+
+            for(let key in arrayOfStates){
+                if(this.currentConfig.states[arrayOfStates[key]].transitions[event]){
+                    newArrayOfStates.push(arrayOfStates[key]);
+                }
+            }
+
+            return newArrayOfStates;
+        }
+
     }
 
     /**
